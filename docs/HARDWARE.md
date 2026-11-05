@@ -18,8 +18,10 @@ this document.
 
 ## IMUs
 
-Two MPU6050 boards share one I2C bus. Their AD0 wiring selects addresses `0x68`
-and `0x69`. Both are mounted flat and identically, with printed X forward.
+The two MPU6050 boards use independent ESP32 I2C controllers. MPU6050 #1 is
+at `0x68` on controller 0 (SDA GPIO 21, SCL GPIO 22); MPU6050 #2 is at `0x69`
+on controller 1 (SDA GPIO 25, SCL GPIO 26). Both buses run at 400 kHz. Both
+boards are mounted flat and identically, with printed X forward.
 
 The initial driver configures both sensors for ±8 g acceleration, ±1000 deg/s
 gyro range, 42 Hz digital filtering, and a nominal 250 Hz sensor output rate.

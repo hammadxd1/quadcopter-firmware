@@ -10,7 +10,9 @@
 namespace {
 
 flight::MotorPwm motorPwm;
-flight::ImuManager imuManager(Wire);
+TwoWire imu1Bus(flight::hardware::kImu1I2cBus);
+TwoWire imu2Bus(flight::hardware::kImu2I2cBus);
+flight::ImuManager imuManager(imu1Bus, imu2Bus);
 flight::DualImuFusion fusion({flight::fusion_config::kImu1Weight,
                                flight::fusion_config::kImu2Weight,
                                flight::fusion_config::kMaximumSampleSkewUs,

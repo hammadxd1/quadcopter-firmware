@@ -35,6 +35,14 @@ Hardware and unit-test procedures are added with their corresponding subsystem.
 4. PID and mixer calculations remain offline from PWM. Validate mixer signs
    with simulated inputs before they are connected to safety-gated output.
 
+## Current pin-change validation
+
+- Verify the four PWM outputs are 22 kHz: FL GPIO 13, FR GPIO 14, RL GPIO 27,
+  RR GPIO 33.
+- Scan each I2C controller independently: controller 0 must find `0x68` on
+  GPIO 21/22; controller 1 must find `0x69` on GPIO 25/26.
+- Confirm no motor PWM pin is reused by either I2C bus.
+
 ## Phase 3–4 build record
 
 - Date: 2026-11-06
@@ -45,7 +53,7 @@ Hardware and unit-test procedures are added with their corresponding subsystem.
 
 1. Remove all propellers and secure the frame.
 2. Flash the firmware and verify each motor output is electrically low at boot.
-3. Verify all four PWM outputs are 20 kHz with zero duty using an oscilloscope
+3. Verify all four PWM outputs are 22 kHz with zero duty using an oscilloscope
    or logic analyzer. No motor-spin command is implemented in this phase.
 4. Record the result; individual motor spin/mapping testing is deferred until
    the explicit safety and bench-test interface exists.

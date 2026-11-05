@@ -14,10 +14,10 @@ does not claim flight-ready gains.
 
 | Output | Position | Rotation |
 |---|---|---|
-| M1 | Front-right | CCW |
-| M2 | Front-left | CW |
-| M3 | Rear-right | CW |
-| M4 | Rear-left | CCW |
+| FL | Front-left, GPIO 13 | CW |
+| FR | Front-right, GPIO 14 | CCW |
+| RL | Rear-left, GPIO 27 | CCW |
+| RR | Rear-right, GPIO 33 | CW |
 
 Positive roll increases left motors; positive pitch increases rear motors.
 Each mixed output is limited to the normalized 0–1 range.

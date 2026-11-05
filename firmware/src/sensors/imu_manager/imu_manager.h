@@ -10,7 +10,7 @@ namespace flight {
 
 class ImuManager {
  public:
-  explicit ImuManager(TwoWire& wire);
+  ImuManager(TwoWire& imu1Bus, TwoWire& imu2Bus);
 
   bool begin();
   bool calibrateBothStationary();
@@ -21,7 +21,8 @@ class ImuManager {
   bool allHealthy() const;
 
  private:
-  TwoWire& wire_;
+  TwoWire& imu1Bus_;
+  TwoWire& imu2Bus_;
   Mpu6050 imu1_;
   Mpu6050 imu2_;
 };

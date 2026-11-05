@@ -15,7 +15,7 @@ phase explicitly authorizes it.
 
 ## Planned ownership
 
-- `drivers`: hardware-facing I2C, MPU6050, and PWM code.
+- `drivers`: hardware-facing dual-I2C, MPU6050, and PWM code.
 - `sensors`: independent IMU calibration and health monitoring.
 - `estimation`: calibrated measurement fusion and complementary attitude filter.
 - `controllers` and `flight`: cascaded PID and Quad-X mixing.

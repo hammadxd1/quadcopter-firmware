@@ -5,15 +5,19 @@
 
 namespace flight {
 
-ImuManager::ImuManager(TwoWire& wire)
-    : wire_(wire),
-      imu1_(wire, hardware::kImu1Address),
-      imu2_(wire, hardware::kImu2Address) {}
+ImuManager::ImuManager(TwoWire& imu1Bus, TwoWire& imu2Bus)
+    : imu1Bus_(imu1Bus),
+      imu2Bus_(imu2Bus),
+      imu1_(imu1Bus, hardware::kImu1Address),
+      imu2_(imu2Bus, hardware::kImu2Address) {}
 
 bool ImuManager::begin() {
-  wire_.begin(hardware::kI2cSdaPin, hardware::kI2cSclPin,
-              hardware::kI2cClockHz);
-  wire_.setTimeOut(imu_config::kI2cTimeoutMs);
+  imu1Bus_.begin(hardware::kImu1SdaPin, hardware::kImu1SclPin,
+                 hardware::kI2cClockHz);
+  imu2Bus_.begin(hardware::kImu2SdaPin, hardware::kImu2SclPin,
+                 hardware::kI2cClockHz);
+  imu1Bus_.setTimeOut(imu_config::kI2cTimeoutMs);
+  imu2Bus_.setTimeOut(imu_config::kI2cTimeoutMs);
   // Do not short-circuit: both sources must be independently attempted and
   // retain their own diagnostic state even when the first device fails.
   const bool imu1Initialized = imu1_.begin();

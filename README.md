@@ -16,12 +16,13 @@ commands non-zero motor output.
 ## Confirmed hardware
 
 - ESP32 DevKit V1; Arduino framework; PlatformIO.
-- MPU6050 #1 at `0x68` and MPU6050 #2 at `0x69`, sharing GPIO 21 (SDA) and
-  GPIO 22 (SCL). Both use the same rigid orientation with X forward.
+- MPU6050 #1 at `0x68` on I2C controller 0 (SDA GPIO 21, SCL GPIO 22) and
+  MPU6050 #2 at `0x69` on I2C controller 1 (SDA GPIO 25, SCL GPIO 26). Both
+  use the same rigid orientation with X forward.
 - 8520 brushed motors, 3.7 V nominal, 1.0 mm shaft, 55 mm matched CW/CCW
-  propellers.
-- Quad-X mapping: front-right CCW GPIO 25; front-left CW GPIO 26; rear-right
-  CW GPIO 27; rear-left CCW GPIO 14.
+  propellers, driven at 22 kHz PWM.
+- Quad-X mapping: front-left CW GPIO 13; front-right CCW GPIO 14; rear-left
+  CCW GPIO 27; rear-right CW GPIO 33.
 - Motors are supplied from the 1S battery rail. The DevKit VIN/5V input is
   supplied by a regulated 5 V boost converter. Motor flyback protection uses
   1N5819-class Schottky diodes.
